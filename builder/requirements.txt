@@ -5,7 +5,7 @@
 # --extra-index-url https://download.pytorch.org/whl/cu118
 # vllm @ git+https://github.com/vllm-project/vllm.git@2b7d3aca2e1dd25fe26424f57c051af3b823cd71
 # runpod @ git+https://github.com/runpod/runpod-python@vllm#egg=runpod
-vllm==0.1.2
+vllm @ git+https://github.com/LiuXiaoxuanPKU/vllm.git@longchat
 huggingface-hub==0.16.4
 runpod @ git+https://github.com/winglian/runpod-python@vllm-streaming#egg=runpod
 fastapi==0.99.1

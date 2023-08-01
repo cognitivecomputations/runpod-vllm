@@ -26,7 +26,7 @@ RUN pip install --upgrade pip && \
 ADD src .
 
 # Quick temporary updates
-RUN pip install git+https://github.com/winglian/runpod-python@vllm-streaming#egg=runpod --compile
+# RUN pip install git+https://github.com/winglian/runpod-python@vllm-streaming#egg=runpod --compile
 
 # Prepare the models inside the docker image
 ENV HUGGING_FACE_HUB_TOKEN=""
