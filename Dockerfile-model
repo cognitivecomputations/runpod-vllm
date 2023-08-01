@@ -1,0 +1,10 @@
+FROM winglian/runpod-worker-vllm:latest
+
+ARG MODEL_NAME=""
+ENV MODEL_NAME=${MODEL_NAME}
+ARG MODEL_REVISION="main"
+ENV MODEL_REVISION=${MODEL_REVISION}
+ARG MODEL_BASE_PATH="/runpod-volume/"
+ENV MODEL_BASE_PATH=${MODEL_BASE_PATH}
+
+RUN python download_model.py

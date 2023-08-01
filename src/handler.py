@@ -15,7 +15,6 @@ MODEL_BASE_PATH = os.environ.get('MODEL_BASE_PATH', '/runpod-volume/')
 engine_args = AsyncEngineArgs(
     model=f"{MODEL_BASE_PATH}{MODEL_NAME.split('/')[1]}",
     tokenizer_mode="auto",
-    trust_remote_code=True,
     tensor_parallel_size=1,
     dtype="auto",
     seed=0,

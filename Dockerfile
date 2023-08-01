@@ -16,13 +16,9 @@ RUN chmod +x /setup.sh && \
     /setup.sh && \
     rm /setup.sh
 
-# Install fast api
-RUN pip install fastapi==0.99.1
-
 # Install Python dependencies (Worker Template)
 COPY builder/requirements.txt /requirements.txt
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install --upgrade pip && \
+RUN pip install --upgrade pip && \
     pip install --upgrade -r /requirements.txt --no-cache-dir && \
     rm /requirements.txt
 
@@ -34,15 +30,13 @@ RUN pip install git+https://github.com/winglian/runpod-python@vllm-streaming#egg
 
 # Prepare the models inside the docker image
 ENV HUGGING_FACE_HUB_TOKEN=""
-ENV MODEL_NAME=""
-ENV MODEL_REVISION="main"
 
 ENV HF_DATASETS_CACHE="/runpod-volume/huggingface-cache/datasets"
 ENV HUGGINGFACE_HUB_CACHE="/runpod-volume/huggingface-cache/hub"
 ENV TRANSFORMERS_CACHE="/runpod-volume/huggingface-cache/hub"
 
 # Start the handler
-ENTRYPOINT [ "entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
 
 # Call your file when your container starts
-CMD [ "python3", "-u", "handler.py" ]
+CMD [ "python3", "-u", "/handler.py" ]
