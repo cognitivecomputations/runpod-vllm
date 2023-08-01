@@ -8,6 +8,7 @@ ENV HOST="0.0.0.0"
 ENV HF_DATASETS_CACHE="/workspace/huggingface-cache/datasets"
 ENV HUGGINGFACE_HUB_CACHE="/workspace/huggingface-cache/hub"
 ENV TRANSFORMERS_CACHE="/workspace/huggingface-cache/hub"
+ENV HUGGING_FACE_HUB_TOKEN=""
 
 # Start the handler
 ENTRYPOINT [ "/entrypoint.sh" ]
