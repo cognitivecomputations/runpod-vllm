@@ -10,6 +10,7 @@ import runpod
 # Prepare the model and tokenizer
 MODEL_NAME = os.environ.get('MODEL_NAME')
 MODEL_BASE_PATH = os.environ.get('MODEL_BASE_PATH', '/runpod-volume/')
+CONCURRENCY = int(os.environ.get('CONCURRENCY', '10'))
 
 # Prepare the engine's arguments
 engine_args = AsyncEngineArgs(
@@ -28,7 +29,7 @@ llm = AsyncLLMEngine.from_engine_args(engine_args)
 def concurrency_controller() -> bool:
     # Compute pending sequences
     total_pending_sequences = len(llm.engine.scheduler.waiting) + len(llm.engine.scheduler.swapped)
-    return total_pending_sequences > 10
+    return total_pending_sequences > CONCURRENCY
 
 
 # Validation
@@ -132,8 +133,8 @@ async def handler(job):
         async for request_output in results_generator:
             final_output = request_output
 
-        prompt = final_output.prompt
-        text_outputs = [prompt + output.text for output in final_output.outputs]
+        # prompt = final_output.prompt
+        text_outputs = [output.text for output in final_output.outputs]
         ret = {"outputs": text_outputs}
         return ret
 
