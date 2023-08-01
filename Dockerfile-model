@@ -1,5 +1,6 @@
 FROM winglian/runpod-worker-vllm:latest
 
+ARG HUGGING_FACE_HUB_TOKEN=""
 ARG MODEL_NAME=""
 ENV MODEL_NAME=${MODEL_NAME}
 ARG MODEL_REVISION="main"
@@ -7,4 +8,4 @@ ENV MODEL_REVISION=${MODEL_REVISION}
 ARG MODEL_BASE_PATH="/runpod-volume/"
 ENV MODEL_BASE_PATH=${MODEL_BASE_PATH}
 
-RUN python download_model.py
+RUN HUGGING_FACE_HUB_TOKEN=$HUGGING_FACE_HUB_TOKEN python download_model.py

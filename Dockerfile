@@ -29,8 +29,6 @@ ADD src .
 # RUN pip install git+https://github.com/winglian/runpod-python@vllm-streaming#egg=runpod --compile
 
 # Prepare the models inside the docker image
-ENV HUGGING_FACE_HUB_TOKEN=""
-
 ENV HF_DATASETS_CACHE="/runpod-volume/huggingface-cache/datasets"
 ENV HUGGINGFACE_HUB_CACHE="/runpod-volume/huggingface-cache/hub"
 ENV TRANSFORMERS_CACHE="/runpod-volume/huggingface-cache/hub"
