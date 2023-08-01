@@ -1,0 +1,14 @@
+FROM winglian/runpod-worker-vllm:latest
+
+ARG MODEL_NAME=""
+ENV MODEL_NAME=${MODEL_NAME}
+
+ENV HF_DATASETS_CACHE="/workspace/huggingface-cache/datasets"
+ENV HUGGINGFACE_HUB_CACHE="/workspace/huggingface-cache/hub"
+ENV TRANSFORMERS_CACHE="/workspace/huggingface-cache/hub"
+
+# Start the handler
+ENTRYPOINT [ "/entrypoint.sh" ]
+
+# Call your file when your container starts
+CMD [ "python3", "-m", "vllm.entrypoints.openai.api_server" ]
