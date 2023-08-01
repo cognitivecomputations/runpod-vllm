@@ -11,7 +11,7 @@ ENV TRANSFORMERS_CACHE="/workspace/huggingface-cache/hub"
 ENV HUGGING_FACE_HUB_TOKEN=""
 
 # Start the handler
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint-ondemand.sh" ]
 
 # Call your file when your container starts
 CMD [ "python3", "-m", "vllm.entrypoints.openai.api_server" ]
