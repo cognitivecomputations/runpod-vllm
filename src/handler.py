@@ -95,7 +95,7 @@ async def handler(job):
     streaming = job_input.get('streaming', False)
 
     # Validate the inputs
-    sampling_params = job_input.get('sampling_params', None)
+    sampling_params = job_input.get('sampling_params', job_input)
     if sampling_params:
         sampling_params = validate_sampling_params(sampling_params)
 
