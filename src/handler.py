@@ -15,7 +15,7 @@ CONCURRENCY = int(os.environ.get('CONCURRENCY', '10'))
 # Prepare the engine's arguments
 engine_args = AsyncEngineArgs(
     model=f"{MODEL_BASE_PATH}{MODEL_NAME.split('/')[1]}",
-    tokenizer_mode="auto",
+    tokenizer_mode="slow",
     tensor_parallel_size=1,
     dtype="auto",
     seed=0,
