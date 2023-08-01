@@ -10,3 +10,4 @@ huggingface-hub==0.16.4
 runpod @ git+https://github.com/winglian/runpod-python@vllm-streaming#egg=runpod
 fastapi==0.99.1
 ray==2.5.1
+fschat
