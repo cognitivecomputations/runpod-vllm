@@ -15,5 +15,6 @@ snapshot_download(
     MODEL_NAME,
     revision=MODEL_REVISION,
     local_dir=f"{MODEL_BASE_PATH}{MODEL_NAME.split('/')[1]}",
+    ignore_patterns="*.safetensors",
     **download_kwargs
 )
