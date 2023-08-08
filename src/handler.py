@@ -118,13 +118,12 @@ async def handler(job):
     # Enable HTTP Streaming
     async def stream_output():
         # Streaming case
+        previous_texts = ""
         async for request_output in results_generator:
-            prompt = request_output.prompt
-            text_outputs = [
-                prompt + output.text for output in request_output.outputs
-            ]
-            ret = {"text": text_outputs}
-            yield ret
+            for output in request_output.outputs:
+                delta_text = output.text[len(previous_texts):]
+                previous_texts = output.text
+                yield {"text": delta_text}
 
     # Regular submission
     async def submit_output():

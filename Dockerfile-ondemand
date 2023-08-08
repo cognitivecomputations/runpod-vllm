@@ -2,13 +2,18 @@ FROM winglian/runpod-worker-vllm:latest
 
 ARG MODEL_NAME=""
 ENV MODEL_NAME=${MODEL_NAME}
+ENV MODEL_BASE_PATH="/workspace/"
 ENV PORT="8888"
 ENV HOST="0.0.0.0"
+ENV EXTRA_VLLM_ARGS=""
 
 ENV HF_DATASETS_CACHE="/workspace/huggingface-cache/datasets"
 ENV HUGGINGFACE_HUB_CACHE="/workspace/huggingface-cache/hub"
 ENV TRANSFORMERS_CACHE="/workspace/huggingface-cache/hub"
+ENV HF_HUB_ENABLE_HF_TRANSFER="1"
 ENV HUGGING_FACE_HUB_TOKEN=""
+
+COPY src/entrypoint-ondemand.sh .
 
 # Start the handler
 ENTRYPOINT [ "/entrypoint-ondemand.sh" ]
