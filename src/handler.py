@@ -11,12 +11,13 @@ import runpod
 MODEL_NAME = os.environ.get('MODEL_NAME')
 MODEL_BASE_PATH = os.environ.get('MODEL_BASE_PATH', '/runpod-volume/')
 CONCURRENCY = int(os.environ.get('CONCURRENCY', '10'))
+RUNPOD_GPU_COUNT = int(os.environ.get('RUNPOD_GPU_COUNT', '1'))
 
 # Prepare the engine's arguments
 engine_args = AsyncEngineArgs(
     model=f"{MODEL_BASE_PATH}{MODEL_NAME.split('/')[1]}",
     tokenizer_mode="slow",
-    tensor_parallel_size=1,
+    tensor_parallel_size=RUNPOD_GPU_COUNT,
     dtype="auto",
     seed=0,
     worker_use_ray=False,
@@ -61,7 +62,7 @@ def validate_sampling_params(sampling_params):
     use_beam_search = validate_bool(sampling_params.get('use_beam_search'), False)
     stop = sampling_params.get('stop', None)
     ignore_eos = validate_bool(sampling_params.get('ignore_eos'), False)
-    max_tokens = validate_int(sampling_params.get('max_tokens'), 256)
+    max_tokens = validate_int(sampling_params.get('max_tokens'), 512)
     logprobs = validate_float(sampling_params.get('logprobs'), None)
 
     return {

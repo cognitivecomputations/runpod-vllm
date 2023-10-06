@@ -6,11 +6,12 @@
 # vllm @ git+https://github.com/vllm-project/vllm.git@2b7d3aca2e1dd25fe26424f57c051af3b823cd71
 # runpod @ git+https://github.com/runpod/runpod-python@vllm#egg=runpod
 
-vllm @ git+https://github.com/LiuXiaoxuanPKU/vllm.git@longchat
-# vllm @ git+https://github.com/vllm-project/vllm.git@main
-huggingface-hub==0.16.4
-runpod @ git+https://github.com/winglian/runpod-python@vllm-streaming#egg=runpod
+# vllm @ git+https://github.com/LiuXiaoxuanPKU/vllm.git@longchat
+vllm==0.2.0
+huggingface-hub==0.17.3
+runpod==1.2.1
 fastapi==0.99.1
-ray==2.5.1
-fschat
+fschat[model_worker]
 hf-transfer~=0.1
+transformers @ git+https://github.com/huggingface/transformers.git
+pandas
