@@ -14,9 +14,10 @@ ENV HF_HUB_ENABLE_HF_TRANSFER="1"
 ENV HUGGING_FACE_HUB_TOKEN=""
 
 COPY src/entrypoint-ondemand.sh .
+COPY src/chatml_server.py .
 
 # Start the handler
 ENTRYPOINT [ "/entrypoint-ondemand.sh" ]
 
 # Call your file when your container starts
-CMD [ "python3", "-m", "vllm.entrypoints.openai.api_server" ]
+CMD [ "python3", "chatml_server.py" ]

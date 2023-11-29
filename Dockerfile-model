@@ -1,4 +1,4 @@
-FROM winglian/runpod-worker-vllm:latest
+FROM ehartford/runpod-worker-vllm:latest
 
 ARG HUGGING_FACE_HUB_TOKEN=""
 ARG MODEL_NAME=""
